@@ -20,6 +20,7 @@ type OptionsType = {
   message: Array<string>
 }
 type Language = 'en' | 'ar'
+
 function OptionsPage() {
   const searchParams = useSearchParams()
   const [options, setOptions] = useState<OptionsType[]>([])
