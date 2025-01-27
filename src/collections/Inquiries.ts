@@ -9,7 +9,7 @@ export const Inquiries: CollectionConfig = {
     create: anyone,
     delete: authenticated,
     read: anyone,
-    update: authenticated,
+    update: anyone,
   },
   admin: {
     useAsTitle: 'parentName',
@@ -36,7 +36,7 @@ export const Inquiries: CollectionConfig = {
     {
       name: 'reason',
       type: 'text',
-    }
+    },
   ],
   timestamps: true,
 }

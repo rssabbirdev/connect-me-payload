@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { RiParentLine } from 'react-icons/ri'
 import { AiOutlineIssuesClose } from 'react-icons/ai'
@@ -26,6 +26,29 @@ function OptionsPage() {
   const [options, setOptions] = useState<OptionsType[]>([])
   const [loading, setLoading] = useState(true)
   const lang = searchParams.get('lang') as Language
+
+  const updateInquiry = async (option: OptionsType) => {
+    if (option.id !== 3) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/inquiries/${searchParams.get('inquiryId')}`,
+        {
+          method: 'PATCH',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            reason: option.title,
+          }),
+        },
+      )
+      const results = await response.json()
+      if (results.doc.id) {
+        redirect(`/checkout?${searchParams}&optionId=${option.id}`)
+      }
+    }
+    redirect(`/checkout?${searchParams}&optionId=${option.id}`)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +76,7 @@ function OptionsPage() {
                 <Link
                   href={'/checkout?' + searchParams + '&optionId=' + option?.id}
                   key={option.id}
-                  // onClick={() => setSelectedOption(option)}
+                  onClick={() => updateInquiry(option)}
                   className="row-span-1 border border-black px-2 py-3 bg-[#ffffff4f]  hover:bg-white rounded-md hover:shadow-md hover:border-blue-600 transition-all hover:-translate-y-1 hover:text-blue-600 hover:cursor-pointer grid grid-cols-3"
                 >
                   <span className="col-span-1 flex justify-center items-center">
@@ -93,10 +116,10 @@ function OptionsPage() {
             </div>
             <div className="grid grid-cols-2 gap-2">
               {options?.map((option) => (
-                <Link
-                  href={'/checkout?' + searchParams + '&optionId=' + option?.id}
+                <button
+                  // href={'/checkout?' + searchParams + '&optionId=' + option?.id}
+                  onClick={() => updateInquiry(option)}
                   key={option.id}
-                  // onClick={() => setSelectedOption(option)}
                   className="row-span-1 border border-black px-2 py-3 bg-[#ffffff4f]  hover:bg-white rounded-md hover:shadow-md hover:border-blue-600 transition-all hover:-translate-y-1 hover:text-blue-600 hover:cursor-pointer grid grid-cols-3"
                 >
                   <span className="col-span-1 flex justify-center items-center">
@@ -123,7 +146,7 @@ function OptionsPage() {
                     <span className="text-lg font-sans">{option?.title}</span>
                     <span className="text-xs text-gray-700">{option?.subtitle}</span>
                   </div>
-                </Link>
+                </button>
               ))}
             </div>
           </div>

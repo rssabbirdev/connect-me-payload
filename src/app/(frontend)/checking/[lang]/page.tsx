@@ -54,7 +54,7 @@ function EnglishChecking() {
   useEffect(() => {
     if (inquiryData?.id) {
       redirect(
-        `/options?lang=${lang}inqueryId=${inquiryData?.id}&parentName=${inquiryData?.parentName}&status=${inquiryData?.status}`,
+        `/options?lang=${lang}inquiryId=${inquiryData?.id}&parentName=${inquiryData?.parentName}&status=${inquiryData?.status}`,
       )
     }
   }, [inquiryData])
