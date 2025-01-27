@@ -1,8 +1,7 @@
 import React from 'react'
 import { FaHome } from 'react-icons/fa'
-import { MdManageAccounts } from "react-icons/md";
-import { IoNotifications } from "react-icons/io5";
-
+import { MdManageAccounts } from 'react-icons/md'
+import { IoNotifications } from 'react-icons/io5'
 
 import Link from 'next/link'
 
@@ -14,10 +13,10 @@ function Footer() {
           <FaHome />
         </Link>
         <Link href="/admin" className="text-white text-2xl">
-          <MdManageAccounts  />
+          <MdManageAccounts />
         </Link>
-        <Link href="/notification" className="text-white text-2xl">
-          <IoNotifications  />
+        <Link href="/notifications" className="text-white text-2xl">
+          <IoNotifications />
         </Link>
       </div>
     </div>

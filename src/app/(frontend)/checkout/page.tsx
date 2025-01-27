@@ -90,7 +90,11 @@ function CheckoutPage() {
     <div className="text-center bg-[#ffffffb8] p-5 rounded-3xl min-h-96">
       {selectedOption?.id === 3 && searchParams.get('meet') !== 'done' ? (
         <div>
-          <h2 className="text-xl font-bold">Please choose the consuler you have meeting with.</h2>
+          <h2 className="text-xl font-bold">
+            {lang === 'ar'
+              ? 'يرجى اختيار القنصل الذي ستقابله.'
+              : 'Please choose the consuler you have meeting with.'}
+          </h2>
           <div className="grid grid-cols-2 gap-5 mt-10">
             {consuler.map((c, index) => (
               <button
