@@ -12,11 +12,19 @@ import { GrCompliance } from 'react-icons/gr'
 import { BsFillMotherboardFill } from 'react-icons/bs'
 import Loading from '../../../components/Loading/index'
 
-function OptionsPage({ params }) {
+type OptionsType = {
+  id: number
+  title: string
+  subtitle: string
+  icon: string
+  message: Array<string>
+}
+type Language = 'en' | 'ar'
+function OptionsPage() {
   const searchParams = useSearchParams()
-  const [options, setOptions] = useState()
+  const [options, setOptions] = useState<OptionsType[]>([])
   const [loading, setLoading] = useState(true)
-  const lang = searchParams.get('lang')
+  const lang = searchParams.get('lang') as Language
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +34,7 @@ function OptionsPage({ params }) {
       setLoading(false)
     }
     fetchData()
-  }, [])
+  }, [lang])
 
   if (loading) {
     return <Loading />
@@ -37,16 +45,14 @@ function OptionsPage({ params }) {
         <div className="w-11/12">
           <div>
             <div>
-              <h2 className="text-2xl text-center py-5">
-                {lang === 'en' ? 'How would you like us to connect you?' : 'كيف تريد أن نوصلك؟'}
-              </h2>
+              <h2 className="text-2xl text-center py-5">كيف تريد أن نوصلك؟</h2>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {options?.map((option) => (
                 <Link
                   href={'/checkout?' + searchParams + '&optionId=' + option?.id}
                   key={option.id}
-                  onClick={() => setSelectedOption(option)}
+                  // onClick={() => setSelectedOption(option)}
                   className="row-span-1 border border-black px-2 py-3 bg-[#ffffff4f]  hover:bg-white rounded-md hover:shadow-md hover:border-blue-600 transition-all hover:-translate-y-1 hover:text-blue-600 hover:cursor-pointer grid grid-cols-3"
                 >
                   <span className="col-span-1 flex justify-center items-center">
@@ -89,7 +95,7 @@ function OptionsPage({ params }) {
                 <Link
                   href={'/checkout?' + searchParams + '&optionId=' + option?.id}
                   key={option.id}
-                  onClick={() => setSelectedOption(option)}
+                  // onClick={() => setSelectedOption(option)}
                   className="row-span-1 border border-black px-2 py-3 bg-[#ffffff4f]  hover:bg-white rounded-md hover:shadow-md hover:border-blue-600 transition-all hover:-translate-y-1 hover:text-blue-600 hover:cursor-pointer grid grid-cols-3"
                 >
                   <span className="col-span-1 flex justify-center items-center">
