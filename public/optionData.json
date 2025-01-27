@@ -1,0 +1,85 @@
+[
+	{
+		"id": 1,
+		"title": "Pickup my child",
+		"subtitle": "I would like to pick up my child",
+		"icon": "RiParentLine",
+		"message": [
+			"A message has been sent to the security and the student.",
+			"Please show your Emirates ID for verifications and approval.",
+			"Please have a seat the student will come within a few minutes"
+		]
+	},
+	{
+		"id": 2,
+		"title": "Technical issues",
+		"subtitle": "I am facing technical issues",
+		"icon": "AiOutlineIssuesClose",
+		"message": [
+			"A message has been sent to the technical support team.",
+			"Please describe the issue in detail when they arrive to assist you.\"",
+			"Please have a seat on the waiting area"
+		]
+	},
+	{
+		"id": 3,
+		"title": "Meet consular",
+		"subtitle": "I have meeting with a consular",
+		"icon": "PiHeadCircuitFill",
+		"message": [
+			"A message has been sent to the consular.",
+			"Please wait in the designated meeting area.",
+			"You will be notified when the consular is available."
+		]
+	},
+	{
+		"id": 4,
+		"title": "Correction Details",
+		"subtitle": "My child's details isn't completed",
+		"icon": "FaPenNib",
+		"message": [
+			"A message has been sent to the administration office",
+			"Please proceed to the administration desk for assistance in completing your child’s details.",
+			"Please show your Emirates ID for verifications and approval."
+		]
+	},
+	{
+		"id": 5,
+		"title": "Meet teacher",
+		"subtitle": "I have meeting with a teacher",
+		"icon": "PiChalkboardTeacherFill",
+		"message": [
+			"A message has been sent to the teacher.",
+			"Please wait in the visitors area. The teacher will meet you shortly."
+		]
+	},
+	{
+		"id": 6,
+		"title": "Complaint",
+		"subtitle": "I have a complaint",
+		"icon": "GrCompliance",
+		"message": [
+			"A message has been sent to the relevant department",
+			"Please proceed to the reception desk, where you can share the details of your complaint."
+		]
+	},
+	{
+		"id": 7,
+		"title": "Transportation",
+		"icon": "BiSolidBusSchool",
+		"subtitle": "I have transportation related question",
+		"message": [
+			"A message has been sent to the transportation coordinator. ",
+			"Please wait for further instructions or proceed to the transportation desk."
+		]
+	},
+	{
+		"id": 8,
+		"title": "Other...",
+		"icon": "BsFillMotherboardFill",
+		"subtitle": "I have other type of query",
+		"message": [
+			"Please specify your request at the reception desk. Our team will assist you shortly."
+		]
+	}
+]

@@ -101,3 +101,21 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+.layout-bg::before {
+	background: rgb(255, 127, 14);
+	background: linear-gradient(
+		356deg,
+		rgba(255, 127, 14, 1) 0%,
+		rgba(0, 120, 215, 1) 0%,
+		rgba(105, 175, 231, 1) 20%,
+		rgba(255, 255, 255, 1) 71%
+	);
+	opacity: 0.8;
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+}
