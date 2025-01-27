@@ -1,4 +1,4 @@
-gigimport Form from 'next/form'
+import Form from 'next/form'
 type Language = 'en' | 'ar'
 async function EnglishChecking({ params }: any) {
   const lang = await params.lang
