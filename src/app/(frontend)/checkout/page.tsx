@@ -1,6 +1,6 @@
 'use client'
 import Loading from '@/components/Loading'
-import { useSearchParams } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import { FaRegSmileBeam } from 'react-icons/fa'
 
@@ -21,6 +21,34 @@ function CheckoutPage() {
   const lang = searchParams.get('lang') as Language
   const [countdown, setCountdown] = useState<number>(10) // Countdown value (10 seconds as an example)
   const [timerId, setTimerId] = useState<number | null>(null)
+  const [consuler, setConsuler] = useState<string[]>([
+    'Ms. Fatmah Al Yammhi',
+    'Ms. Fatima Almazrouee',
+    'Ms. Fatima Alghfeli',
+    'Ms. Amira Aljasmi',
+  ])
+  console.log(selectedOption)
+  const updateInquiry = async (consulerName: string, option: OptionsType) => {
+    setLoading(true)
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/inquiries/${searchParams.get('inquiryId')}`,
+      {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          reason: `Meeting with consuler ${consulerName}`,
+        }),
+      },
+    )
+    const results = await response.json()
+    if (results?.doc?.id) {
+      redirect(`/checkout?${searchParams}&meet=done`)
+    }
+    setLoading(false)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +62,7 @@ function CheckoutPage() {
   }, [lang, searchParams])
 
   useEffect(() => {
-    if (!loading && selectedOption?.id) {
+    if (selectedOption?.id !== 3 || searchParams.get('meet') === 'done') {
       const id = window.setTimeout(() => {
         setCountdown((prev) => {
           if (prev <= 1) {
@@ -53,32 +81,51 @@ function CheckoutPage() {
         }
       }
     }
-  }, [loading, selectedOption?.id, timerId])
+  }, [countdown])
 
   if (loading) {
     return <Loading />
   }
   return (
-    <div className="text-center">
-      <div>
-        <FaRegSmileBeam className="text-center w-full text-[120px] mb-10 text-green-500" />
-        <p className="text-lg">
-          Mr/Ms: {searchParams.get('parentName')} we received your request about{' '}
-          <span className="font-bold">{selectedOption?.title}</span>
-        </p>
+    <div className="text-center bg-[#ffffffb8] p-5 rounded-3xl min-h-96">
+      {selectedOption?.id === 3 && searchParams.get('meet') !== 'done' ? (
+        <div>
+          <h2 className="text-xl font-bold">Please choose the consuler you have meeting with.</h2>
+          <div className="grid grid-cols-2 gap-5 mt-10">
+            {consuler.map((c, index) => (
+              <button
+                onClick={() => updateInquiry(c, selectedOption)}
+                className="col-span-1 border border-black px-3 py-3 hover:bg-black hover:text-white transition-all"
+                key={index}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="">
+          <div>
+            <FaRegSmileBeam className="text-center w-full text-[120px] mb-10 text-green-500" />
+            <p className="text-lg">
+              Mr/Ms: {searchParams.get('parentName')} we received your request about{' '}
+              <span className="font-bold">{selectedOption?.title}</span>
+            </p>
 
-        {/* <p className='row-span-1 border border-black p-3'>
+            {/* <p className='row-span-1 border border-black p-3'>
 					{selectedOption?.title}
 				</p> */}
-      </div>
-      <div>
-        {selectedOption?.message?.map((message, index) => (
-          <p className="text-lg text-blue-700 p-5" key={index}>
-            {message}
-          </p>
-        ))}
-      </div>
-      <p className="text-xs text-red-500">Redirect to home page within {countdown} second</p>
+          </div>
+          <div>
+            {selectedOption?.message?.map((message, index) => (
+              <p className="text-lg text-blue-700 p-5" key={index}>
+                {message}
+              </p>
+            ))}
+          </div>
+          <p className="text-xs text-red-500">Redirect to home page within {countdown} second</p>
+        </div>
+      )}
     </div>
   )
 }
