@@ -41,7 +41,7 @@ function page() {
 
   return (
     <section className="container">
-      <div className="bg-white min-h-[75vh] p-10 text-black rounded-3xl">
+      <div className="bg-[#ffffffc7] min-h-[75vh] p-10 text-black rounded-3xl">
         <div className="space-y-4">
           {inquiriesLoading && (
             <div className="flex justify-center items-center">

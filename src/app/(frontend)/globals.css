@@ -123,3 +123,20 @@ html[data-theme='light'] {
 iframe#tidio-chat-iframe{
   inset: auto 8px 53px auto !important;
 }
+
+.slideshow {
+width: 100vw;
+height: 100vw;
+background-size: cover;
+background-repeat: no-repeat;
+animation: slideshow 20s ease-in-out infinite;
+}
+@keyframes slideshow {
+0% { background-image: url("/img-1.jpg"); }
+33% { background-image: url("/img-2.jpg"); }
+66% { background-image: url("/img-3.jpg"); }
+100% { background-image: url("/img-4.png"); }
+66% { background-image: url("/img-1.jpg"); }
+33% { background-image: url("/img-2.jpg"); }
+0% { background-image: url("/img-3.jpg"); }
+}

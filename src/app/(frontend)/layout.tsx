@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body>
+      <body className="slideshow">
         <Providers>
           <AdminBar
             adminBarProps={{
@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <div
-            className={`antialiased flex flex-col items-center min-h-screen bg-university-bg bg-no-repeat bg-cover backdrop-blur layout-bg`}
+            className={`antialiased flex flex-col items-center min-h-screen slideshow backdrop-blur layout-bg`}
           >
             {/* <Header /> */}
             <Header />
