@@ -11,13 +11,13 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
+// import { Footer } from './Footer/config'
+// import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
-import { Inquiries } from './collections/Inquiries'
 import { Students } from './collections/Students'
+import { Inquiries } from './collections/Inquiries'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,7 +66,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Inquiries, Students],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  // globals: [Header, Footer],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
