@@ -119,3 +119,7 @@ html[data-theme='light'] {
 	width: 100%;
 	z-index: -1;
 }
+
+iframe#tidio-chat-iframe{
+  inset: auto 8px 53px auto !important;
+}

@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
           <div
-            className={`antialiased flex flex-col items-center min-h-screen relative bg-university-bg bg-no-repeat bg-cover backdrop-blur layout-bg`}
+            className={`antialiased flex flex-col items-center min-h-screen bg-university-bg bg-no-repeat bg-cover backdrop-blur layout-bg`}
           >
             {/* <Header /> */}
             <Header />

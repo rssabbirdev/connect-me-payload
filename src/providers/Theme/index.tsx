@@ -24,21 +24,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     if (themeToSet === null) {
       window.localStorage.removeItem(themeLocalStorageKey)
       const implicitPreference = getImplicitPreference()
-      document.documentElement.setAttribute('data-theme', implicitPreference || '')
-      if (implicitPreference) setThemeState(implicitPreference)
+      document.documentElement.setAttribute('data-theme', 'light')
+      if (implicitPreference) setThemeState('light')
     } else {
-      setThemeState(themeToSet)
+      setThemeState('light')
       window.localStorage.setItem(themeLocalStorageKey, themeToSet)
-      document.documentElement.setAttribute('data-theme', themeToSet)
+      document.documentElement.setAttribute('data-theme', 'light')
     }
   }, [])
 
   useEffect(() => {
-    let themeToSet: Theme = defaultTheme
+    let themeToSet: Theme = 'light'
     const preference = window.localStorage.getItem(themeLocalStorageKey)
 
     if (themeIsValid(preference)) {
-      themeToSet = preference
+      themeToSet = 'light'
     } else {
       const implicitPreference = getImplicitPreference()
 
@@ -47,8 +47,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
 
-    document.documentElement.setAttribute('data-theme', themeToSet)
-    setThemeState(themeToSet)
+    document.documentElement.setAttribute('data-theme', 'light')
+    setThemeState('light')
   }, [])
 
   return <ThemeContext.Provider value={{ setTheme, theme }}>{children}</ThemeContext.Provider>
