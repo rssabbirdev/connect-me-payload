@@ -15,6 +15,7 @@ import Loading from '../../../components/Loading/index'
 type OptionsType = {
   id: number
   title: string
+  englishTitle: string
   subtitle: string
   icon: string
   message: Array<string>
@@ -38,7 +39,7 @@ function OptionsPage() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            reason: option.title,
+            reason: lang === 'ar' ? option.englishTitle : option.title,
           }),
         },
       )

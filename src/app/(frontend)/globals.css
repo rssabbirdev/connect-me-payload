@@ -126,9 +126,9 @@ iframe#tidio-chat-iframe{
 
 .slideshow {
 width: 100vw;
-height: 100vw;
 background-size: cover;
 background-repeat: no-repeat;
+background-position: center;
 animation: slideshow 20s ease-in-out infinite;
 }
 @keyframes slideshow {

@@ -41,7 +41,7 @@ function page() {
 
   return (
     <section className="container">
-      <div className="bg-[#ffffffc7] min-h-[75vh] p-10 text-black rounded-3xl">
+      <div className="bg-[#ffffffc7] h-[75vh] overflow-scroll  p-10 text-black rounded-3xl">
         <div className="space-y-4">
           {inquiriesLoading && (
             <div className="flex justify-center items-center">
@@ -56,7 +56,7 @@ function page() {
               {inquiries?.map((inquiry) => (
                 <details
                   key={inquiry.id}
-                  className="group border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+                  className="group border-s-4 mb-5 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
                 >
                   <summary className="flex cursor-pointer items-center justify-between gap-1.5">
                     <h2 className="text-lg font-medium text-gray-900">
@@ -77,9 +77,9 @@ function page() {
                         fill="currentColor"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         />
                       </svg>
                     </span>

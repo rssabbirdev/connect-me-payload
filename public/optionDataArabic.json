@@ -2,6 +2,7 @@
   {
     "id": 1,
     "title": "اصطحب طفلي",
+    "englishTitle": "Pickup my child",
     "subtitle": "أود أن ألتقط طفلي",
     "icon": "RiParentLine",
     "message": [
@@ -13,6 +14,7 @@
   {
     "id": 2,
     "title": "القضايا الفنية",
+    "englishTitle": "Technical issues",
     "subtitle": "أواجه مشاكل فنية",
     "icon": "AiOutlineIssuesClose",
     "message": [
@@ -24,6 +26,7 @@
   {
     "id": 3,
     "title": "لقاء الخصائية",
+    "englishTitle": "Meet consular",
     "subtitle": "لدي اجتماع مع القنصل",
     "icon": "PiHeadCircuitFill",
     "message": [
@@ -35,6 +38,7 @@
   {
     "id": 4,
     "title": "تفاصيل التصحيح",
+    "englishTitle": "Correction Details",
     "subtitle": "تفاصيل طفلي لم تكتمل",
     "icon": "FaPenNib",
     "message": [
@@ -46,6 +50,7 @@
   {
     "id": 5,
     "title": "لقاء المعلم",
+    "englishTitle": "Meet teacher",
     "subtitle": "لدي لقاء مع المعلم",
     "icon": "PiChalkboardTeacherFill",
     "message": [
@@ -56,6 +61,7 @@
   {
     "id": 6,
     "title": "شكوى",
+    "englishTitle": "Complaint",
     "subtitle": "لدي شكوى",
     "icon": "GrCompliance",
     "message": [
@@ -66,6 +72,7 @@
   {
     "id": 7,
     "title": "مواصلات",
+    "englishTitle": "Transportation",
     "icon": "BiSolidBusSchool",
     "subtitle": "لدي سؤال متعلق بالنقل",
     "message": [
@@ -76,6 +83,7 @@
   {
     "id": 8,
     "title": "آخر...",
+    "englishTitle": "Other...",
     "icon": "BsFillMotherboardFill",
     "subtitle": "لدي نوع آخر من الاستعلام",
     "message": ["يرجى تحديد طلبك في مكتب الاستقبال. سيقوم فريقنا بمساعدتك قريبًا."]
