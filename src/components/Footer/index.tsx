@@ -12,7 +12,7 @@ function Footer() {
         <Link href="/" className="text-white text-2xl">
           <FaHome />
         </Link>
-        <Link href="/admin" className="text-white text-2xl">
+        <Link href="/login" className="text-white text-2xl">
           <MdManageAccounts />
         </Link>
         <Link href="/notifications" className="text-white text-2xl">

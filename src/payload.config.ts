@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -10,7 +11,6 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
-import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -18,6 +18,7 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Students } from './collections/Students'
 import { Inquiries } from './collections/Inquiries'
+import { Users } from './collections/Users'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -59,6 +60,11 @@ export default buildConfig({
       ],
     },
   },
+  email: resendAdapter({
+    defaultFromAddress: 'support@connectme.driotion.com',
+    defaultFromName: 'Connect Me',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({

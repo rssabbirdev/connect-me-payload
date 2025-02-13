@@ -1,26 +1,80 @@
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
+import { anyone } from '@/access/anyone'
+import adminsAndUser from './access/adminsAndUser'
+import { admins } from '@/access/admins'
+import { checkRole } from './checkRole'
+import { createOtp } from './hooks/createOtp'
+import crypto from 'crypto'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   access: {
-    admin: authenticated,
-    create: authenticated,
-    delete: authenticated,
-    read: authenticated,
-    update: authenticated,
+    read: anyone,
+    create: anyone,
+    update: anyone,
+    delete: admins,
+    // admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   admin: {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
   },
-  auth: true,
+  auth: {
+    verify: {
+      generateEmailSubject: ({ req, user }) => {
+        return `Hey ${user.name}, Your OTP Code!`
+      },
+      generateEmailHTML: ({ req, token, user }) => {
+        // Use the token provided to allow your user to verify their account
+        const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`
+
+        return `<p>Your OTP is: <strong>${user._otp}</strong>. It will expire in 10 minutes.</p> <p>Or you can verify your email by clicking here: ${url}</p>`
+      },
+    },
+  },
   fields: [
     {
       name: 'name',
       type: 'text',
+      required: true,
+    },
+    {
+      name: '_otp',
+      type: 'text',
+      admin: { hidden: true },
+      access: {
+        create: () => true,
+        update: () => true,
+      },
+      defaultValue: crypto.randomInt(100000, 999999).toString(),
+    },
+    {
+      name: 'roles',
+      type: 'select',
+      hasMany: true,
+      defaultValue: ['user'],
+      options: [
+        {
+          label: 'admin',
+          value: 'admin',
+        },
+        {
+          label: 'user',
+          value: 'user',
+        },
+      ],
+      // access: {
+      //   read: admins,
+      //   create: admins,
+      //   update: admins,
+      // },
     },
   ],
+  hooks: {
+    // afterChange: [createOtp],
+  },
   timestamps: true,
 }
