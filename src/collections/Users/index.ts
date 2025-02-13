@@ -3,10 +3,8 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { anyone } from '@/access/anyone'
 import adminsAndUser from './access/adminsAndUser'
-import { admins } from '@/access/admins'
-import { checkRole } from './checkRole'
-import { createOtp } from './hooks/createOtp'
 import crypto from 'crypto'
+import { isAdminFieldLevel } from '@/access/isAdminFieldLevel'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -14,9 +12,9 @@ export const Users: CollectionConfig = {
     read: anyone,
     create: anyone,
     update: anyone,
-    delete: admins,
+    delete: authenticated,
     // admin: ({ req: { user } }) => checkRole(['admin'], user),
-    admin: ({ req: { user } }) => checkRole(['admin'], user),
+    admin: isAdminFieldLevel,
   },
   admin: {
     defaultColumns: ['name', 'email'],
