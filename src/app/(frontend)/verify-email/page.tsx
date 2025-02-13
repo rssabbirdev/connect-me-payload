@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
 import { FaEnvelope } from 'react-icons/fa'
 import { useSearchParams } from 'next/navigation'
 
-export default function VerifyEmailPage() {
+function VerifyEmailPageWithOutSuspense() {
   const [isLoading, setIsLoading] = useState(false)
   const [otp, setOtp] = useState('')
   const [verified, setVerified] = useState(false)
@@ -108,5 +108,13 @@ export default function VerifyEmailPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense>
+      <VerifyEmailPageWithOutSuspense />
+    </Suspense>
   )
 }
