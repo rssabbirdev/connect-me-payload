@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { FaKey } from 'react-icons/fa'
 import { useAuth } from '@/providers/Auth'
 import { useRouter } from 'next/navigation'
+import Loading from '@/components/Loading'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -15,7 +16,8 @@ export default function LoginPage() {
   const router = useRouter()
 
   if (status === 'loggedIn') {
-    return router.push('/admin')
+    router.push('/admin')
+    return <Loading />
   }
 
   async function onSubmit(e: React.FormEvent) {

@@ -12,10 +12,24 @@ export default function ForgotPasswordPage() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
-    // Add your password reset logic here
-    console.log({ email })
-    setEmailSent(true)
-    setIsLoading(false)
+    try {
+      const req = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/forgot-password`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      })
+      const data = await req.json()
+      setEmailSent(true)
+      setIsLoading(false)
+    } catch (err) {
+      console.log(err)
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -26,9 +40,11 @@ export default function ForgotPasswordPage() {
             <FaHistory className="h-12 w-12 text-black" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Reset your password</h2>
-          <p className="text-gray-600 mb-6">
-            Enter your email address and we'll send you a reset link
-          </p>
+          {!emailSent && (
+            <p className="text-gray-600 mb-6">
+              Enter your email address and we'll send you a reset link
+            </p>
+          )}
         </div>
 
         {emailSent ? (

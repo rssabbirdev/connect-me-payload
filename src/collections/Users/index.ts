@@ -32,6 +32,30 @@ export const Users: CollectionConfig = {
         return `<p>Your OTP is: <strong>${user._otp}</strong>. It will expire in 10 minutes.</p> <p>Or you can verify your email by clicking here: ${url}</p>`
       },
     },
+    forgotPassword: {
+      generateEmailSubject: (context) => {
+        return `${context?.user?.name ? `Hey, ${context?.user?.name}. Reset Your Password` : 'Reset Your Password'}`
+      },
+      generateEmailHTML: (context) => {
+        // Use the token provided to allow your user to reset their password
+        const resetPasswordURL = `${process.env.NEXT_PUBLIC_SERVER_URL}/reset-password?token=${context?.token}`
+
+        return `
+          <!doctype html>
+          <html>
+            <body>
+              <h1>Password reset request for ConnectMe!</h1>
+              <p>Your are receiving this because you (or someone else) have requested the reset of he password for your account. Please click on the following link, or paste this into your browser to complete the process:</p>
+              <p>Click below to reset your password.</p>
+              <p>
+                <a href="${resetPasswordURL}">${resetPasswordURL}</a>
+              </p>
+              <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+            </body>
+          </html>
+        `
+      },
+    },
   },
   fields: [
     {
