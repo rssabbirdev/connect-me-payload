@@ -11,6 +11,7 @@ import { BiSolidBusSchool } from 'react-icons/bi'
 import { GrCompliance } from 'react-icons/gr'
 import { BsFillMotherboardFill } from 'react-icons/bs'
 import Loading from '../../../components/Loading/index'
+import AccessibleText from '@/components/AccessibleText/AccessibleText'
 
 type OptionsType = {
   id: number
@@ -69,8 +70,10 @@ function OptionsPage() {
       {lang === 'ar' ? (
         <div className="w-11/12">
           <div>
-            <div>
-              <h2 className="text-2xl text-center py-5">كيف تريد أن نوصلك؟</h2>
+            <div className="flex justify-center">
+              <AccessibleText text="كيف تريد أن نوصلك؟" lang="ar-SA" buttonPosition="left">
+                <h2 className="text-2xl text-center py-5">كيف تريد أن نوصلك؟</h2>
+              </AccessibleText>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {options?.map((option) => (
@@ -112,8 +115,10 @@ function OptionsPage() {
       ) : (
         <div className="w-11/12">
           <div>
-            <div>
-              <h2 className="text-2xl text-center py-5">How would you like us to connect you?</h2>
+            <div className="flex justify-center">
+              <AccessibleText text="How would you like us to connect you?">
+                <h2 className="text-2xl text-center py-5">How would you like us to connect you?</h2>
+              </AccessibleText>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {options?.map((option) => (

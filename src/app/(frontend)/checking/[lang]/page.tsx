@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { redirect, useParams } from 'next/navigation'
 import { Inquiry, Student } from '@/payload-types'
 import Loading from '@/components/Loading'
+import AccessibleText from '@/components/AccessibleText/AccessibleText'
 
 function EnglishChecking() {
   const [mobileNumber, setMobileNumber] = useState<string>('')
@@ -68,7 +69,9 @@ function EnglishChecking() {
       {lang === 'ar' && !createInquiryloading && (
         <div>
           <div>
-            <p className="text-4xl text-center mb-2">يرجى ملء المعلومات أدناه</p>
+            <AccessibleText text="يرجى ملء المعلومات أدناه" lang="ar-SA" buttonPosition="left">
+              <p className="text-4xl text-center mb-2">يرجى ملء المعلومات أدناه</p>
+            </AccessibleText>
           </div>
           <div className="text-lg">
             <div className="space-y-10">
@@ -93,7 +96,12 @@ function EnglishChecking() {
                 </div>
               </div>
               <div className="bg-white p-3 rounded-lg transition-all h-36">
-                <h2 className="mb-2 text-center">حدد أسماء الطلاب</h2>
+                <div className="flex justify-center">
+                  <AccessibleText text="حدد أسماء الطلاب" lang="ar-SA" buttonPosition="left">
+                    <h2 className="mb-2 text-center">حدد أسماء الطلاب</h2>
+                  </AccessibleText>
+                </div>
+
                 <div
                   className={`flex justify-center items-center gap-5 transition-all ${students?.length ? 'opacity-100' : 'opacity-0'}`}
                 >
@@ -118,9 +126,19 @@ function EnglishChecking() {
                     ))}
                 </div>
                 {students?.length === 0 && !loading && (
-                  <p className={`${students?.length ? 'opacity-0' : 'opacity-100'} text-center`}>
-                    لم يتم العثور على أي طالب
-                  </p>
+                  <div className="flex justify-center">
+                    <AccessibleText
+                      text="لم يتم العثور على أي طالب"
+                      lang="ar-SA"
+                      buttonPosition="left"
+                    >
+                      <p
+                        className={`${students?.length ? 'opacity-0' : 'opacity-100'} text-center`}
+                      >
+                        لم يتم العثور على أي طالب
+                      </p>
+                    </AccessibleText>
+                  </div>
                 )}
                 {loading && (
                   <div className="flex justify-center items-center">
@@ -144,7 +162,9 @@ function EnglishChecking() {
       {lang === 'en' && !createInquiryloading && (
         <div>
           <div>
-            <p className="text-lg text-center mb-2">Please fill in the information below</p>
+            <AccessibleText text="Please fill in the information below">
+              <p className="text-lg text-center mb-2">Please fill in the information below</p>
+            </AccessibleText>
           </div>
           <div className="text-lg">
             <div className="space-y-10">
@@ -188,7 +208,12 @@ function EnglishChecking() {
                 </div>
               </div>
               <div className="bg-white p-3 rounded-lg transition-all h-36">
-                <h2 className="mb-2 text-center">Select Student Names</h2>
+                <div className="flex justify-center">
+                  <AccessibleText text="Select Student Names">
+                    <h2 className="mb-2 text-center">Select Student Names</h2>
+                  </AccessibleText>
+                </div>
+
                 <div
                   className={`flex justify-center items-center gap-5 transition-all ${students?.length ? 'opacity-100' : 'opacity-0'}`}
                 >
@@ -213,9 +238,16 @@ function EnglishChecking() {
                     ))}
                 </div>
                 {students?.length === 0 && !loading && (
-                  <p className={`${students?.length ? 'opacity-0' : 'opacity-100'} text-center`}>
-                    No Student
-                  </p>
+                  <div className="flex justify-center">
+                    <AccessibleText text="No Student Found">
+                      <p
+                        className={`${students?.length ? 'opacity-0' : 'opacity-100'} text-center`}
+                      >
+                        {' '}
+                        No Student
+                      </p>
+                    </AccessibleText>
+                  </div>
                 )}
                 {loading && (
                   <div className="flex justify-center items-center">

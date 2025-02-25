@@ -1,4 +1,5 @@
 'use client'
+import AccessibleText from '@/components/AccessibleText/AccessibleText'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -9,6 +10,11 @@ export default function HomePage() {
         <Image src="/logo.png" alt="logo" width={100} height={38} />
         <h2 className="text-2xl font-bold">CONNECT ME</h2>
         <p className="tracking-widest">Parent Visits Simplified</p>
+        <div className="mt-5">
+          <AccessibleText text="Choose your preferable language from here">
+            <p className=" uppercase font-bold">Choose Language from here</p>
+          </AccessibleText>
+        </div>
       </div>
       <div className="flex flex-col gap-5 w-2/4">
         <Link
